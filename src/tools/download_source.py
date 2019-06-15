@@ -75,6 +75,7 @@ def main(parameters):
                 filename = os.path.join('data/', extracted[0])
 
                 # Uploads the file to S3
+                # s3.upload_file(filename, bucket_name, 'test/'+extracted[0])
                 s3.upload_file(filename, bucket_name, filename)
 
                 # deletes the extracted file
