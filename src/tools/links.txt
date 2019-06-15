@@ -1,3 +1,3 @@
-178033 3fdec996e71e0a352c2c2b990170e4e7 http://data.gdeltproject.org/gdeltv2/20190611163000.export.CSV.zip
-299524 728927e1acf0aa406312e0e40391e547 http://data.gdeltproject.org/gdeltv2/20190611163000.mentions.CSV.zip
-11632467 ac2d69d5c366ad7c9926601932dbdb70 http://data.gdeltproject.org/gdeltv2/20190611163000.gkg.csv.zip
+133934 9c6a348d0aaff6fbce4da39164f3a802 http://data.gdeltproject.org/gdeltv2/20190611230000.export.CSV.zip
+282893 9e0cffb72c98fc08cc92aaa94af696dd http://data.gdeltproject.org/gdeltv2/20190611230000.mentions.CSV.zip
+10865512 151046c007f6259d528570b658fd9c85 http://data.gdeltproject.org/gdeltv2/20190611230000.gkg.csv.zip
