@@ -8,6 +8,9 @@ def main(parameters):
     # links file name
     links_file = "links.txt"
 
+    #path for data
+    dir_path="/home/ubuntu/data/"
+
     if parameters.type == '1':
         print("Batch")
         # URL to use
@@ -34,8 +37,6 @@ def main(parameters):
     else:
         df.columns = ['id', 'hash', 'url']
 
-    # get the dirpath for the current directory and add the data folder to it
-    dir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data")
     # the initial file has data since 2016, but we are not looking into all files
     # we are just looking for 2019, so we define the start date
     start_date = dt.strptime("20190101", "%Y%m%d")
@@ -72,7 +73,7 @@ def main(parameters):
                 os.remove(final_dir)
 
                 # final pathfile for the extracted file
-                filename = os.path.join('data/', extracted[0])
+                filename = os.path.join(dir_path, extracted[0])
 
                 # Uploads the file to S3
                 # s3.upload_file(filename, bucket_name, 'test/'+extracted[0])
