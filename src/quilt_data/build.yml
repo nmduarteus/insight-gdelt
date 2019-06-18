@@ -1,0 +1,127 @@
+contents:
+  README:
+    file: README.md
+  data:
+    gkg:
+      file: data/20190102000000.gkg.csv
+      kwargs:
+        names: ['GKGRECORDID','V2_1DATE','V2SOURCECOLLECTIONIDENTIFIER','V2SOURCECOMMONNAME','V2DOCUMENTIDENTIFIER','V1COUNTS','V2_1COUNTS','V1THEMES','V2ENHANCEDTHEMES','V1LOCATIONS','V2ENHANCEDLOCATIONS','V1PERSONS','V2ENHANCEDPERSONS','V1ORGANIZATIONS','V2ENHANCEDORGANIZATIONS','V1_5TONE','V2_1ENHANCEDDATES','V2GCAM','V2_1SHARINGIMAGE','V2_1RELATEDIMAGES','V2_1SOCIALIMAGEEMBEDS','V2_1SOCIALVIDEOEMBEDS','V2_1QUOTATIONS','V2_1ALLNAMES','V2_1AMOUNTS','V2_1TRANSLATIONINFO','V2EXTRASXML','EXTRACTED_DATA']
+        sep: '\t'
+        dtype:
+          GKGRECORDID: str
+          V2_1DATE: int
+          V2SOURCECOLLECTIONIDENTIFIER: int
+          V2SOURCECOMMONNAME: str
+          V2DOCUMENTIDENTIFIER: str
+          V1COUNTS: str
+          V2_1COUNTS: str
+          V1THEMES: str
+          V2ENHANCEDTHEMES: str
+          V1LOCATIONS: str
+          V2ENHANCEDLOCATIONS: str
+          V1PERSONS: str
+          V2ENHANCEDPERSONS: str
+          V1ORGANIZATIONS: str
+          V2ENHANCEDORGANIZATIONS: str
+          V1_5TONE: str
+          V2_1ENHANCEDDATES: str
+          V2GCAM: str
+          V2_1SHARINGIMAGE: str
+          V2_1RELATEDIMAGES: str
+          V2_1SOCIALIMAGEEMBEDS: str
+          V2_1SOCIALVIDEOEMBEDS: str
+          V2_1QUOTATIONS: str
+          V2_1ALLNAMES: str
+          V2_1AMOUNTS: str
+          V2_1TRANSLATIONINFO: str
+          V2EXTRASXML: str
+          EXTRACTED_DATA: str
+    events:
+      file: data/20190102000000.export.CSV
+      kwargs:
+        names: ['GLOBALEVENTID','SQLDATE','MonthYear','Year','FractionDate','Actor1Code','Actor1Name','Actor1CountryCode','Actor1KnownGroupCode','Actor1EthnicCode','Actor1Religion1Code','Actor1Religion2Code','Actor1Type1Code','Actor1Type2Code','Actor1Type3Code','Actor2Code','Actor2Name','Actor2CountryCode','Actor2KnownGroupCode','Actor2EthnicCode','Actor2Religion1Code','Actor2Religion2Code','Actor2Type1Code','Actor2Type2Code','Actor2Type3Code','IsRootEvent','EventCode','EventBaseCode','EventRootCode','QuadClass','GoldsteinScale','NumMentions','NumSources','NumArticles','AvgTone','Actor1Geo_Type','Actor1Geo_FullName','Actor1Geo_CountryCode','Actor1Geo_ADM1Code','Actor1Geo_ADM2Code','Actor1Geo_Lat','Actor1Geo_Long','Actor1Geo_FeatureID','Actor2Geo_Type','Actor2Geo_FullName','Actor2Geo_CountryCode','Actor2Geo_ADM1Code','Actor2Geo_ADM2Code','Actor2Geo_Lat','Actor2Geo_Long','Actor2Geo_FeatureID','ActionGeo_Type','ActionGeo_FullName','ActionGeo_CountryCode','ActionGeo_ADM1Code','ActionGeo_ADM2Code','ActionGeo_Lat','ActionGeo_Long','ActionGeo_FeatureID','DATEADDED','SOURCEURL']
+        sep: '\t'
+        dtype:
+          GLOBALEVENTID: int
+          SQLDATE: int
+          MonthYear: int
+          Year: int
+          FractionDate: float
+          Actor1Code: str
+          Actor1Name: str
+          Actor1CountryCode: str
+          Actor1KnownGroupCode: str
+          Actor1EthnicCode: str
+          Actor1Religion1Code: str
+          Actor1Religion2Code: str
+          Actor1Type1Code: str
+          Actor1Type2Code: str
+          Actor1Type3Code: str
+          Actor2Code: str
+          Actor2Name: str
+          Actor2CountryCode: str
+          Actor2KnownGroupCode: str
+          Actor2EthnicCode: str
+          Actor2Religion1Code: str
+          Actor2Religion2Code: str
+          Actor2Type1Code: str
+          Actor2Type2Code: str
+          Actor2Type3Code: str
+          IsRootEvent: int
+          EventCode: str
+          EventBaseCode: str
+          EventRootCode: str
+          QuadClass: int
+          GoldsteinScale: float
+          NumMentions: int
+          NumSources: int
+          NumArticles: int
+          AvgTone: float
+          Actor1Geo_Type: int
+          Actor1Geo_FullName: str
+          Actor1Geo_CountryCode: str
+          Actor1Geo_ADM1Code: str
+          Actor1Geo_ADM2Code: str
+          Actor1Geo_Lat: float
+          Actor1Geo_Long: float
+          Actor1Geo_FeatureID: str
+          Actor2Geo_Type: int
+          Actor2Geo_FullName: str
+          Actor2Geo_CountryCode: str
+          Actor2Geo_ADM1Code: str
+          Actor2Geo_ADM2Code: str
+          Actor2Geo_Lat: float
+          Actor2Geo_Long: float
+          Actor2Geo_FeatureID: str
+          ActionGeo_Type: int
+          ActionGeo_FullName: str
+          ActionGeo_CountryCode: str
+          ActionGeo_ADM1Code: str
+          ActionGeo_ADM2Code: str
+          ActionGeo_Lat: float
+          ActionGeo_Long: float
+          ActionGeo_FeatureID: str
+          DATEADDED: int
+          SOURCEURL: str
+    mentions:
+      file: data/20190102000000.mentions.CSV
+      kwargs:
+        names: ['GLOBALEVENTID','EventTimeDate','MentionTimeDate','MentionType','MentionSourceName','MentionIdentifier','SentenceID','Actor1CharOffset','Actor2CharOffset','ActionCharOffset','InRawText','Confidence','MentionDocLen','MentionDocTone','MentionDocTranslationInfo','Extras']
+        sep: '\t'
+        dtype:
+          GLOBALEVENTID: int
+          EventTimeDate: int
+          MentionTimeDate: int
+          MentionType: int
+          MentionSourceName: str
+          MentionIdentifier: str
+          SentenceID: int
+          Actor1CharOffset: int
+          Actor2CharOffset: int
+          ActionCharOffset: int
+          InRawText: int
+          Confidence: int
+          MentionDocLen: int
+          MentionDocTone: Float
+          MentionDocTranslationInfo: str
+          Extras: str
