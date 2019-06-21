@@ -5,11 +5,12 @@ from datetime import datetime as dt
 
 # main function
 def main(parameters):
-    # links file name
-    links_file = "links.txt"
 
     #path for data
-    dir_path="/home/ubuntu/data/"
+    dir_path="/home/nuno/data/"
+
+    # links file name
+    links_file = os.path.join(dir_path,"links.txt")
 
     if parameters.type == '1':
         print("Batch")
@@ -65,6 +66,7 @@ def main(parameters):
                 # this will be useful to get the extracted file name so that we can delete it after upload
                 extracted = zip_ref.namelist()
 
+                print("Extracting file to ",dir_path)
                 # extract the file
                 zip_ref.extractall(dir_path)
                 zip_ref.close()
@@ -77,7 +79,8 @@ def main(parameters):
 
                 # Uploads the file to S3
                 # s3.upload_file(filename, bucket_name, 'test/'+extracted[0])
-                s3.upload_file(filename, bucket_name, filename)
+                print("Uploading file ",filename)
+                s3.upload_file(filename, bucket_name, "test/"+extracted[0])
 
                 # deletes the extracted file
                 os.remove(filename)
