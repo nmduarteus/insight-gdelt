@@ -9,6 +9,7 @@ import argparse
 import quilt
 
 
+
 bucket = "nmduartegdelt"
 prefix = "test_small"
 prefixUpload= "upload_small"
@@ -207,7 +208,7 @@ def read_from_s3_enriched(session, location, schema, date):
                            quote='"',
                            escape = "\\",
                            multiLine = True,
-                           header="false",
+                           header= True,
                            schema=schema)
 
 
@@ -303,6 +304,7 @@ def uploadToQuilt(spark):
     # mentions data
     print("Getting mention data..")
     mentions_df = read_from_s3_enriched(spark, "mentions", mentions_schema, cmd_opts.date)
+    mentions_df.show()
     mentions_df.write.csv("tmp_data/mentions", header="true", mode="overwrite")
 
     events_df = read_from_s3_enriched(spark, "events", events_schema2, cmd_opts.date)
@@ -310,6 +312,8 @@ def uploadToQuilt(spark):
 
     news_df = read_from_s3_enriched(spark, "news", news_schema, cmd_opts.date)
     news_df.write.csv("tmp_data/news", header="true", mode="overwrite")
+
+    #news_df.write.csv("hdfs://10.0.0.13/ubuntu/hdfs/data/example.csv")
 
     #news_df.show()
 
