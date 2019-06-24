@@ -2,18 +2,14 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf, lit
 from pyspark.sql.types import FloatType, StringType, StructField, StructType, IntegerType
 from newsplease import NewsPlease
-from newspaper import Article
-import pandas as pd
-import traceback
 import argparse
 import quilt
-
-
+import sys
 
 bucket = "nmduartegdelt"
 prefix = "test_small"
 prefixUpload= "upload_small"
-
+master = "spark://ec2-34-219-229-126.us-west-2.compute.amazonaws.com:7077"
 
 def set_schemas():
     """
@@ -272,107 +268,62 @@ def getNews(link):
     :return: the content of the news for the linl provided
     """
     try:
-        """
-        first_article = Article(url=link)
-        first_article.download()
-        first_article.parse()
-        text=first_article.text
-        """
         article = NewsPlease.from_url(link)
 
         #we need to remove new lines and quotes, otherwise quilt will fail
         article_no_newlines = article.text.replace('\n', '')
         article_no_quotes = article_no_newlines.replace('"', "'")
-        #article = NewsPlease.from_url(link)
-        #return article.text
 
         return article_no_quotes
     except:
         print("An exception occurred while scrapping the news:",link)
-        # traceback.print_exc()
         pass
 
     return None
 
 def uploadToQuilt(spark):
-    #downloads the data from s3
+
+    # downloads the data from s3
     print("Getting schemas..")
-    events_schema, mentions_schema, news_schema,events_schema2 = set_schemas()
+    events_schema, mentions_schema, news_schema, events_schema2 = set_schemas()
 
-    # quilt.install("nmduarte/gdelt3")
+    # remove old data and get new one
+    quilt.rm("nmduarte/gdelt",force=True)
+    quilt.install("nmduarte/gdelt",force=True)
+    from quilt.data.nmduarte import gdelt
 
-    # mentions data
+    # get the old data from quilt
+    events_from_quilt = gdelt.events()
+    mentions_from_quilt = gdelt.mentions()
+    news_from_quilt = gdelt.news()
+
+    # transform the data into dataframes so it can be appended
+    events_from_quilt_df = spark.createDataFrame(events_from_quilt, schema=events_schema2)
+    mentions_from_quilt_df = spark.createDataFrame(mentions_from_quilt, schema=mentions_schema)
+    news_from_quilt_df = spark.createDataFrame(news_from_quilt, schema=news_schema)
+
+    # mentions data - new data
     print("Getting mention data..")
     mentions_df = read_from_s3_enriched(spark, "mentions", mentions_schema, cmd_opts.date)
-    mentions_df.show()
-    mentions_df.write.csv("tmp_data/mentions", header="true", mode="overwrite")
 
     events_df = read_from_s3_enriched(spark, "events", events_schema2, cmd_opts.date)
-    events_df.write.csv("tmp_data/events", header="true", mode="overwrite")
 
     news_df = read_from_s3_enriched(spark, "news", news_schema, cmd_opts.date)
-    news_df.write.csv("tmp_data/news", header="true", mode="overwrite")
 
-    #news_df.write.csv("hdfs://10.0.0.13/ubuntu/hdfs/data/example.csv")
-
-    #news_df.show()
-
-    #quilt.build("nmduarte/gdelt8_news")
-    #from quilt.data.nmduarte import gdelt8_news
-    #news1 = pd.read_csv("tmp_data/news/part-00000-0f8595b0-2bd0-4156-9254-78e7b5cfa5c9-c000.csv", engine='python', escapechar="\\")
-    #gdelt8_news._set(['bar'], news1)
-    #print(gdelt8_news.bar())
-    #quilt.push("nmduarte/gdelt8_news", is_public=True)
-
-    #quilt.build("nmduarte/gdelt_news","tmp_data/news")
-    # put some data in it
-    #from quilt.data.nmduarte import gdelt9_news
-    #df = pd.DataFrame(data=[1, 2, 3])
-    #gdelt9_news._set(['bar'], df)
-    #print(gdelt9_news.bar())
-    #quilt.push("nmduarte/gdelt_news", is_public=True)
-
-    #print(news1.head())
+    #concatenate already existing data with new data
+    mentions_concat = mentions_from_quilt_df.union(mentions_df)
+    events_concat = events_from_quilt_df.union(events_df)
+    news_concat = news_from_quilt_df.union(news_df)
 
     # build the 3 packages
-    quilt.build("nmduarte/gdelt_mentions","tmp_data/mentions")
-    quilt.build("nmduarte/gdelt_events", "tmp_data/events")
-    quilt.build("nmduarte/gdelt_news", "tmp_data/news")
+    quilt.build("nmduarte/gdelt/mentions",mentions_concat.toPandas())
+    quilt.build("nmduarte/gdelt/events", events_concat.toPandas())
+    quilt.build("nmduarte/gdelt/news", news_concat.toPandas())
 
     # push the 3 packages
-    quilt.push("nmduarte/gdelt_mentions", is_public=True, is_team=False)
-    quilt.push("nmduarte/gdelt_events", is_public=True, is_team=False)
-    quilt.push("nmduarte/gdelt_news", is_public=True, is_team=False)
-
-
-
-def addtoQuilt(df_new, name):
-    from quilt.data.nmduarte import gdelt3
-
-    if name=="data_with_news":
-        d = gdelt3.data.data_with_news()
-    else:
-        d = gdelt3.data.events()
-
-    #print("Original data has :", original_data.count())
-
-    df_new2= df_new.toPandas()
-
-    print("Appending:", df_new2.count())
-
-    print("original: ",type(d))
-    print("new: ", type(df_new2))
-
-    d = d.append(df_new2)
-    print("TTOAL:", d.count())
-
-    # gdelt3._set(["data","data_with_news"],df)
-
-    # data_with_news['new_column'] = "aaaaaa"
-    # data_with_news['new_column2'] = "bbbbb"
-
-    quilt.build("nmduarte/gdelt3/data/"+name, d)
-    quilt.push("nmduarte/gdelt3/data/"+name, is_public=True, is_team=False)
+    quilt.push("nmduarte/gdelt/mentions", is_public=True, is_team=False)
+    quilt.push("nmduarte/gdelt/events", is_public=True, is_team=False)
+    quilt.push("nmduarte/gdelt/news", is_public=True, is_team=False)
 
 def do_crawling(spark):
     """
@@ -383,8 +334,6 @@ def do_crawling(spark):
 
     print("Getting schemas..")
     events_schema, mentions_schema, news_schema,events_schema2 = set_schemas()
-
-    # quilt.install("nmduarte/gdelt3")
 
     # mentions data
     print("Getting mention data..")
@@ -418,26 +367,12 @@ def do_crawling(spark):
     print("There are ", distinct_news.count(), " distinct URLs")
 
     # gets the scrapped data and add it to the dataset
-    distinct_news_with_data = distinct_news.limit(10).withColumn("NewsText", news_udf(distinct_news.SOURCEURL))
-    # distinct_news_with_data = distinct_news.withColumn("NewsText",lit("viagem de carro de Lucknow, capital do estado de Uttar Pradesh, para a ensurdecedora cidade de Shahjahanpur demora cerca de quatro horas. É difícil andar pelas ruas estreitas, cheias de bicicletas e vendedores de rua. Ouve-se constantemente um concerto de buzinas. Longe das ruas principais, há uma praça rodeada por pequenas casas. Entre elas, uma casa de dois quartos está escondida dos transeuntes por uma parede verde de três metros e umas portas de ferro azuis. Por trás delas, o mistério do que aconteceu ao jornalista freelancer indiano Jagendra Singh há quatro anos ainda não foi resolvido. A 1 de junho de 2015 Singh estava à espera de uma visita, mas não sabia exatamente o que esperar. Escrevia há semanas sobre o alegado envolvimento do político local Rammurti Singh Verma na extração ilegal de areia. Tinha chegado a altura de se reunirem. No entanto, no início da tarde, a polícia apareceu em casa de Singh. A família Singh diz que veio acompanhada por apoiantes de Verma. Pouco depois, Singh chegou ao hospital em agonia com queimaduras em 50% do seu corpo.“Porque é que me mataram?” disse num vídeo gravado no corredor do hospital local, para onde foi levado de urgência. “Os filhos da puta despejaram gasolina por cima de mim. Saltaram o muro e entraram. Se quisessem, podiam-me ter prendido.” Com os olhos fechados e sem conseguir olhar para a câmara, acusou os agentes da polícia e os apoiantes de Verma de lhe pegarem fogo. No vídeo, podemos ver as terríveis queimaduras. Morreu dos ferimentos, sete dias mais tarde. Tinha 46 anos.")).repartition(100)
+    distinct_news_with_data = distinct_news.withColumn("NewsText", news_udf(distinct_news.SOURCEURL))
 
     pan=distinct_news_with_data.toPandas()
     print(pan.head())
 
     print("Partitions: ", distinct_news_with_data.rdd.getNumPartitions())
-    # distinct_news_with_data.show()
-
-    # distinct_news_with_data.show()
-
-    # events.select("SQLDATE").show()
-
-    # print("Joining data......")
-    # print(events_df_hash.count())
-
-    # joined_data= events_df_hash.join(distinct_news_with_data, on="SOURCEURL", how="left")
-    # joined_data.show()
-    # joined_data= events_df_hash.join(distinct_news_with_data, Seq("HashURL"),"left")
-    # select(events_df_hash("*"),distinct_news_with_data("NewsText"))
 
     print("Loading to S3....")
 
@@ -445,20 +380,6 @@ def do_crawling(spark):
     uploadToS3(distinct_news_with_data, "news", cmd_opts.date)
     uploadToS3(events_df_hash, "events", cmd_opts.date)
     uploadToS3(mentions_df, "mentions", cmd_opts.date)
-    # print("Loading data into s3.....")
-    # uploadToS3(joined_data, "joined")
-
-    # e = events.select(events.GLOBALEVENTID,events.SQLDATE,events.MonthYear,events.Year,events.FractionDate,events.Actor1Code,events.Actor1Name,events.Actor1CountryCode,events.Actor1KnownGroupCode,events.Actor1EthnicCode,events.Actor1Religion1Code,events.Actor1Religion2Code,events.Actor1Type1Code,events.Actor1Type2Code,events.Actor1Type3Code,events.Actor2Code,events.Actor2Name,events.Actor2CountryCode,events.Actor2KnownGroupCode,events.Actor2EthnicCode,events.Actor2Religion1Code,events.Actor2Religion2Code,events.Actor2Type1Code,events.Actor2Type2Code,events.Actor2Type3Code,events.IsRootEvent,events.EventCode,events.EventBaseCode,events.EventRootCode,events.QuadClass,events.GoldsteinScale,events.NumMentions,events.NumSources,events.NumArticles,events.AvgTone,events.Actor1Geo_Type,events.Actor1Geo_FullName,events.Actor1Geo_CountryCode,events.Actor1Geo_ADM1Code,events.Actor1Geo_ADM2Code,events.Actor1Geo_Lat,events.Actor1Geo_Long,events.Actor1Geo_FeatureID,events.Actor2Geo_Type,events.Actor2Geo_FullName,events.Actor2Geo_CountryCode,events.Actor2Geo_ADM1Code,events.Actor2Geo_ADM2Code,events.Actor2Geo_Lat,events.Actor2Geo_Long,events.Actor2Geo_FeatureID,events.ActionGeo_Type,events.ActionGeo_FullName,events.ActionGeo_CountryCode,events.ActionGeo_ADM1Code,events.ActionGeo_ADM2Code,events.ActionGeo_Lat,events.ActionGeo_Long,events.ActionGeo_FeatureID,events.DATEADDED,events.SOURCEURL)
-    # events_df.repartition(1).write.csv("/home/ubuntu/ccc.csv")
-    # events_df_hash.show()
-
-    # addtoQuilt(distinct_news_with_data,"data_with_news")
-    # addtoQuilt(events_df,"events")
-
-    # quilt.build("nmduarte/gdelt3/data/data_with_news", d)
-    # quilt.push("nmduarte/gdelt3/data/data_with_news", is_public=True, is_team=False)
-
-
 
 def main():
     """
@@ -466,52 +387,26 @@ def main():
     :param cmd_opts: contains the date to be processed, sent by airflow
     :return:
     """
-    # first configs are to speed up writ to s3
-    # last congigures are to
-    spark = SparkSession.builder\
-        .appName("GDELT+") \
-        .config("spark.hadoop.fs.s3a.multiobjectdelete.enable", "false")\
-        .config("spark.hadoop.fs.s3a.fast.upload", "true")\
-        .config("spark.sql.parquet.filterPushdown", "true")\
-        .config("spark.sql.parquet.mergeSchema", "false")\
-        .config("spark.hadoop.mapreduce.fileoutputcommitter.algorithm.version", "2")\
-        .config("spark.speculation", "false") \
-        .config("spark.sql.execution.arrow.enabled", "true") \
-        .config("spark.shuffle.service.enabled", "true") \
-        .config("spark.deploy.speadOut","false") \
-        .config("spark.dynamicAllocation.enabled", "true") \
-        .config("mapreduce.fileoutputcommitter.marksuccessfuljobs", "false") \
-        .getOrCreate()  # create new spark session
 
-    """ 
-    .config("spark.dynamicAllocation.enabled", "true") \
-        
-    Enable Arrow-based columnar data transfers - to convert to pandas if needed for quilt"""
+    # define session configurations and master
+    spark = SparkSession.builder.appName("GDELT+").master(master).getOrCreate()  # create new spark session
+    spark.conf.set("spark.hadoop.fs.s3a.multiobjectdelete.enable", "false")
+    spark.conf.set("spark.hadoop.fs.s3a.fast.upload", "true")
+    spark.conf.set("spark.sql.parquet.filterPushdown", "true")
+    spark.conf.set("spark.sql.parquet.mergeSchema", "false")
+    spark.conf.set("spark.hadoop.mapreduce.fileoutputcommitter.algorithm.version", "2")
+    spark.conf.set("spark.speculation", "false")
+    spark.conf.set("spark.sql.execution.arrow.enabled", "true")
+    spark.conf.set("spark.shuffle.service.enabled", "true")
+    spark.conf.set("spark.deploy.speadOut","false")
+    spark.conf.set("spark.dynamicAllocation.enabled", "true")
+    spark.conf.set("mapreduce.fileoutputcommitter.marksuccessfuljobs", "false")
 
-    #do_crawling(spark)
-    uploadToQuilt(spark)
+    if cmd_opts.action=="gather":
+        do_crawling(spark)
+    elif cmd_opts.action=="quilt":
+        uploadToQuilt(spark)
 
-    #article = NewsPlease.from_url("https://au.news.yahoo.com/toronto-boss-exposed-sexist-shame-woman-linkedin-profile-picture-030435716.html?guccounter=1")
-    #a = article.text.replace('"', r'\"')
-    #print(article.text)
-
-    #d = {'col1': [1, article.text], 'col2': [3, 4]}
-    #df = pd.DataFrame(data=d)
-    #print(df)
-    #finalArticle = article.text.replace('\n', '')
-    #l = [(finalArticle , "999999999999999999999")]
-    #z= spark.createDataFrame(l)
-    #z.show()
-    #print(z.count())
-    #z.coalesce(1).write.csv("text3.csv")
-
-    #readit = spark.read.csv("text3.csv",sep=',', escape="\\", multiLine=True)
-
-    #readit.show()
-    #readit.select("_c0").show()
-    #print(readit.count())
-
-    # schemas to be used by the data
     spark.stop()
 
 
@@ -522,6 +417,14 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--date',
                         help='Datetime to be processed', required=True)
 
+    parser.add_argument('-a', '--action',
+                        help='Action to be processed', required=True)
+
     cmd_opts = parser.parse_args()
+
+    if cmd_opts.action not in ['gather','quilt']:
+        print("Please use one of the following actions - 'gather' or 'quilt'")
+        sys.exit()
+
     main()
 
