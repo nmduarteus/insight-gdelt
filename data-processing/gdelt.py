@@ -1,15 +1,18 @@
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import udf, lit
-from pyspark.sql.types import FloatType, StringType, StructField, StructType, IntegerType
-from newsplease import NewsPlease
 import argparse
-import quilt
 import sys
 
+import quilt
+from newsplease import NewsPlease
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import udf
+from pyspark.sql.types import FloatType, StringType, StructField, StructType, IntegerType
+
 bucket = "nmduartegdelt"
-prefix = "test_small"
-prefixUpload= "upload_small"
+prefix = "data"
+prefixUpload = "upload"
 master = "spark://ec2-34-219-229-126.us-west-2.compute.amazonaws.com:7077"
+spark_input_file = "/home/ubuntu/PycharmProjects/insight-gdelt/src/spark.txt"
+
 
 def set_schemas():
     """
@@ -174,12 +177,12 @@ def set_schemas():
 
     return events_schema, mentions_schema, news_schema, events_schema2
 
+
 def read_from_s3_enriched(session, location, schema, date):
     """
         Function to read data from S3 enriched data
 
         :param session: current Spark session
-        :param name: name to be used while filtering the files in the S3 bucket
         :param schema: name of the schema to be used for this dataframe
         :param date: date to be processed
         :return: a dataframe with the S3 data for that specific subset of files (ie, mentions; events)
@@ -202,13 +205,13 @@ def read_from_s3_enriched(session, location, schema, date):
                            format="csv",
                            sep=",",
                            quote='"',
-                           escape = "\\",
-                           multiLine = True,
-                           header= True,
+                           escape="\\",
+                           multiLine=True,
+                           header=True,
                            schema=schema)
 
-
     return df
+
 
 def read_from_s3(session, name, schema, date):
     """
@@ -222,8 +225,8 @@ def read_from_s3(session, name, schema, date):
     """
 
     # run history if needed
-    if date=='all':
-        date="*"
+    if date == 'all':
+        date = "*"
 
     s3filename = "s3a://{}/{}/{}.{}.CSV".format(bucket, prefix, date, name)
 
@@ -238,13 +241,16 @@ def read_from_s3(session, name, schema, date):
 
     return df
 
-def uploadToS3(dataToWrite, location, date=None):
+
+def upload_to_s3(data_to_write, location, date=None):
     """
     Function to upload data to S3.
-    Ideally we would like to upload files in parquet format, but Quilt does not manage those kind of files, so we will have to use CSV
+    Ideally we would like to upload files in parquet format, but Quilt does not manage those kind of files, so we will
+    have to use CSV
 
-    :param dataToWrite: dataframe that is to be written
+    :param data_to_write: dataframe that is to be written
     :param location:  S3 bucket location to write the files
+    :param date:  Date of the file to be uploaded
     :return: None
     """
     day = date[6:8]
@@ -253,14 +259,15 @@ def uploadToS3(dataToWrite, location, date=None):
     hour = date[8:10]
     minute = date[10:12]
 
-    #creates the path for the output files
+    # creates the path for the output files
     loc = "s3a://{}/{}/{}/{}/{}/{}/{}/{}".format(bucket, prefixUpload, year, month, day, hour, minute, location)
 
-    #TODO: even though the tool doesn't allow parquet in the current status, we'll upload data in that format to S3
+    # dataToWrite.write.mode("overwrite").parquet(loc)
 
-    dataToWrite.write.csv(loc, header="true", mode="overwrite")
+    data_to_write.write.csv(loc, header="true", mode="overwrite")
 
-def getNews(link):
+
+def get_news(link):
     """
     Function to get the news for a certain URL - using library newsplease
 
@@ -270,26 +277,26 @@ def getNews(link):
     try:
         article = NewsPlease.from_url(link)
 
-        #we need to remove new lines and quotes, otherwise quilt will fail
+        # we need to remove new lines and quotes, otherwise quilt will fail
         article_no_newlines = article.text.replace('\n', '')
         article_no_quotes = article_no_newlines.replace('"', "'")
 
         return article_no_quotes
     except:
-        print("An exception occurred while scrapping the news:",link)
+        print("An exception occurred while scrapping the news:", link)
         pass
 
     return None
 
-def uploadToQuilt(spark):
 
+def upload_to_quilt(spark):
     # downloads the data from s3
     print("Getting schemas..")
     events_schema, mentions_schema, news_schema, events_schema2 = set_schemas()
 
     # remove old data and get new one
-    quilt.rm("nmduarte/gdelt",force=True)
-    quilt.install("nmduarte/gdelt",force=True)
+    quilt.rm("nmduarte/gdelt", force=True)
+    quilt.install("nmduarte/gdelt", force=True)
     from quilt.data.nmduarte import gdelt
 
     # get the old data from quilt
@@ -310,13 +317,13 @@ def uploadToQuilt(spark):
 
     news_df = read_from_s3_enriched(spark, "news", news_schema, cmd_opts.date)
 
-    #concatenate already existing data with new data
+    # concatenate already existing data with new data
     mentions_concat = mentions_from_quilt_df.union(mentions_df)
     events_concat = events_from_quilt_df.union(events_df)
     news_concat = news_from_quilt_df.union(news_df)
 
     # build the 3 packages
-    quilt.build("nmduarte/gdelt/mentions",mentions_concat.toPandas())
+    quilt.build("nmduarte/gdelt/mentions", mentions_concat.toPandas())
     quilt.build("nmduarte/gdelt/events", events_concat.toPandas())
     quilt.build("nmduarte/gdelt/news", news_concat.toPandas())
 
@@ -324,6 +331,7 @@ def uploadToQuilt(spark):
     quilt.push("nmduarte/gdelt/mentions", is_public=True, is_team=False)
     quilt.push("nmduarte/gdelt/events", is_public=True, is_team=False)
     quilt.push("nmduarte/gdelt/news", is_public=True, is_team=False)
+
 
 def do_crawling(spark):
     """
@@ -333,7 +341,7 @@ def do_crawling(spark):
     """
 
     print("Getting schemas..")
-    events_schema, mentions_schema, news_schema,events_schema2 = set_schemas()
+    events_schema, mentions_schema, news_schema, events_schema2 = set_schemas()
 
     # mentions data
     print("Getting mention data..")
@@ -348,10 +356,10 @@ def do_crawling(spark):
     print("Events has ", events_df.count(), "records")
 
     # creates a UDF so we can add the data as a new column to the already existing dataframe
-    news_udf = udf(lambda z: getNews(z),
+    news_udf = udf(lambda z: get_news(z),
                    StringType())
 
-    # creates a UDF for the has
+    # creates a UDF for the hash value
     hash_udf = udf(lambda z: hash(z), StringType())
 
     # adds hash column based on the sourceurl so that data can be joined afterwards
@@ -360,7 +368,8 @@ def do_crawling(spark):
     # events alias
     events = events_df_hash.alias("events")
 
-    # there are several entries that can have the same URL and we don't want to scrape those, so we select the distinct values only
+    # there are several entries that can have the same URL and we don't want to scrape those,
+    # so we select the distinct values only
     distinct_news = events.select(events.SOURCEURL,
                                   events.HashURL, events.SQLDATE).distinct()
 
@@ -369,7 +378,7 @@ def do_crawling(spark):
     # gets the scrapped data and add it to the dataset
     distinct_news_with_data = distinct_news.withColumn("NewsText", news_udf(distinct_news.SOURCEURL))
 
-    pan=distinct_news_with_data.toPandas()
+    pan = distinct_news_with_data.toPandas()
     print(pan.head())
 
     print("Partitions: ", distinct_news_with_data.rdd.getNumPartitions())
@@ -377,17 +386,25 @@ def do_crawling(spark):
     print("Loading to S3....")
 
     # write files to s3
-    uploadToS3(distinct_news_with_data, "news", cmd_opts.date)
-    uploadToS3(events_df_hash, "events", cmd_opts.date)
-    uploadToS3(mentions_df, "mentions", cmd_opts.date)
+    upload_to_s3(distinct_news_with_data, "news", cmd_opts.date)
+    upload_to_s3(events_df_hash, "events", cmd_opts.date)
+    upload_to_s3(mentions_df, "mentions", cmd_opts.date)
+
 
 def main():
     """
-
-    :param cmd_opts: contains the date to be processed, sent by airflow
+    Main function
     :return:
     """
 
+    # if there's no date from input, let's read it from the file created by airflow
+    if cmd_opts.date is None:
+        print("No date provided by user. Reading date from spark.txt file")
+        spark_input = open(spark_input_file, "r")
+        cmd_opts.date = spark_input.read()
+        spark_input.close()
+
+    print(cmd_opts.date)
     # define session configurations and master
     spark = SparkSession.builder.appName("GDELT+").master(master).getOrCreate()  # create new spark session
     spark.conf.set("spark.hadoop.fs.s3a.multiobjectdelete.enable", "false")
@@ -397,15 +414,24 @@ def main():
     spark.conf.set("spark.hadoop.mapreduce.fileoutputcommitter.algorithm.version", "2")
     spark.conf.set("spark.speculation", "false")
     spark.conf.set("spark.sql.execution.arrow.enabled", "true")
-    spark.conf.set("spark.shuffle.service.enabled", "true")
-    spark.conf.set("spark.deploy.speadOut","false")
-    spark.conf.set("spark.dynamicAllocation.enabled", "true")
+    spark.conf.set("spark.deploy.speadOut", "false")
     spark.conf.set("mapreduce.fileoutputcommitter.marksuccessfuljobs", "false")
 
-    if cmd_opts.action=="gather":
+    """
+    spark.conf.set("spark.dynamicAllocation.enabled", "true")
+    spark.conf.set("spark.shuffle.service.enabled", "true")
+    """
+
+    if cmd_opts.action == "gather":
+        print("Option Selected: Crawling Data")
         do_crawling(spark)
-    elif cmd_opts.action=="quilt":
-        uploadToQuilt(spark)
+    elif cmd_opts.action == "quilt":
+        print("Option Selected: Upload to Quilt")
+        upload_to_quilt(spark)
+    elif cmd_opts.action is None:
+        print("Option Selected: End to End")
+        do_crawling(spark)
+        upload_to_quilt(spark)
 
     spark.stop()
 
@@ -415,16 +441,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='GDELT+')
 
     parser.add_argument('-d', '--date',
-                        help='Datetime to be processed', required=True)
+                        help='Datetime to be processed', required=False)
 
     parser.add_argument('-a', '--action',
-                        help='Action to be processed', required=True)
+                        help='Action to be processed', required=False)
 
     cmd_opts = parser.parse_args()
 
-    if cmd_opts.action not in ['gather','quilt']:
+    if cmd_opts.action not in ['gather', 'quilt', None]:
         print("Please use one of the following actions - 'gather' or 'quilt'")
         sys.exit()
 
     main()
-

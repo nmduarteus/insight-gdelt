@@ -1,16 +1,23 @@
-import urllib.request, os, zipfile, boto3, pandas as pd, argparse
-from urllib.parse import urlparse
+import argparse
+import os
+import urllib.request
+import zipfile
 from datetime import datetime as dt
+from urllib.parse import urlparse
+
+import boto3
+import pandas as pd
 
 
 # main function
 def main(parameters):
 
     #path for data
-    dir_path="/home/nuno/data/"
+    dir_path="/home/ubuntu/insight/data/"
 
     # links file name
     links_file = os.path.join(dir_path,"links.txt")
+    spark_input_file = os.path.join(dir_path,"spark.txt")
 
     if parameters.type == '1':
         print("Batch")
@@ -53,6 +60,9 @@ def main(parameters):
             # date of the current file to be downloaded
             current_date = dt.strptime(original_url_file_name[:8], "%Y%m%d")
 
+            # gets the date to be used as an input by spark
+            spark_date = original_url_file_name[:14]
+
             # check if the file is more recent than our start date
             if current_date > start_date:
                 # output file
@@ -80,10 +90,14 @@ def main(parameters):
                 # Uploads the file to S3
                 # s3.upload_file(filename, bucket_name, 'test/'+extracted[0])
                 print("Uploading file ",filename)
-                s3.upload_file(filename, bucket_name, "test/"+extracted[0])
+                s3.upload_file(filename, bucket_name, "data/"+extracted[0])
 
                 # deletes the extracted file
                 os.remove(filename)
+
+    spark_input = open(spark_input_file, "w")
+    spark_input.write(spark_date)
+    spark_input.close()
 
 
 if __name__ == "__main__":
