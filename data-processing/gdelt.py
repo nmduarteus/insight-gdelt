@@ -11,7 +11,7 @@ bucket = "nmduartegdelt"
 prefix = "data"
 prefixUpload = "upload"
 master = "spark://ec2-34-219-229-126.us-west-2.compute.amazonaws.com:7077"
-spark_input_file = "/home/ubuntu/PycharmProjects/insight-gdelt/src/spark.txt"
+spark_input_file = "/home/ubuntu/insight/spark.txt"
 
 
 def set_schemas():

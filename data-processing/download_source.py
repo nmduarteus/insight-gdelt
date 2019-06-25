@@ -8,12 +8,14 @@ from urllib.parse import urlparse
 import boto3
 import pandas as pd
 
+# home directory
+HOME = "/home/ubuntu/insight"
 
 # main function
 def main(parameters):
 
     #path for data
-    dir_path="/home/ubuntu/insight/data/"
+    dir_path= HOME + "/data/"
 
     # links file name
     links_file = os.path.join(dir_path,"links.txt")

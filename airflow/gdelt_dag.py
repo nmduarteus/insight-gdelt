@@ -8,9 +8,15 @@ from airflow.operators.bash_operator import BashOperator
 
 from airflow import DAG
 
-# folder where the download script and the data folder are
-SCRIPTS_FOLDER = '~/insight/scripts'
-DATA_FOLDER = '~/insight/data'
+# home folder for project
+HOME = '/home/ubuntu/insight'
+
+# subfolders in airflow ec2
+SCRIPTS_FOLDER = HOME + '/scripts'
+DATA_FOLDER = HOME + '/data'
+
+# spark master script location
+SPARK_CODE = HOME + '/code/data-processing'
 
 default_args = {
     'owner': 'airflow',
@@ -34,11 +40,11 @@ upload_data_to_s3 = BashOperator(
 # copy the latest data to spark master so that spark knows which date to run
 copy_spark_date = BashOperator(
     task_id='copy_spark_date',
-    bash_command='scp ' + DATA_FOLDER + '/spark.txt spark_master:/home/ubuntu/PycharmProjects/insight-gdelt/src',
+    bash_command='scp ' + DATA_FOLDER + '/spark.txt spark_master:' + HOME,
     dag=dag)
 
 # spark command to run in the spark master
-spark_bash = "/usr/local/spark/bin/spark-submit /home/ubuntu/PycharmProjects/insight-gdelt/src/gdelt.py"
+spark_bash = "/usr/local/spark/bin/spark-submit " + SPARK_CODE
 
 spark_job = SSHOperator(
     ssh_conn_id='ssh_default',
