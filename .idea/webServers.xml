@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ae3c07e9-229a-40a3-a008-fd4ab247f183" name="airflow" url="http://34.220.102.56">
+        <fileTransfer host="34.220.102.56" port="22" privateKey="$USER_HOME$/.ssh/nuno-IAM-keypair.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

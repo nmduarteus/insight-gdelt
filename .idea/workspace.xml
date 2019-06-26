@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="df28e42e-a00f-496a-88ec-8a77826db3ed" name="Default Changelist" comment="" />
+    <ignored path="data-processing/src/" />
+    <ignored path="flask/config/database.ini" />
+    <manually-removed-from-ignored>
+      <directory path="data-processing/src/tools/" />
+      <directory path="data-processing/src/quilt_data/" />
+    </manually-removed-from-ignored>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>input</find>
+      <find>numberCols</find>
+      <find>down</find>
+      <find>bucke</find>
+      <find>last</find>
+      <find>write</find>
+      <find>newsdata</find>
+      <find>data</find>
+      <find>toPan</find>
+      <find>se</find>
+      <find>helper</find>
+      <find>re_export</find>
+      <find>Dis</find>
+      <find>join</find>
+      <find>SQLDATE</find>
+      <find>sc</find>
+      <find>limit</find>
+      <find>bucket_name</find>
+      <find>links_file</find>
+      <find>session</find>
+      <find>cmd</find>
+      <find>lit</find>
+      <find>dynam</find>
+      <find>spark.</find>
+      <find>sales</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Nuno &lt;nuno.nmduarte.us@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RESET_MODE" value="MIXED" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/quilt_data/data/20190102001500.export.CSV" />
+        <option value="$PROJECT_DIR$/src/quilt_data/README.md" />
+        <option value="$PROJECT_DIR$/src/quilt_data/test_quilt.py" />
+        <option value="$PROJECT_DIR$/src/quilt_data/tests/test_quilt.py" />
+        <option value="$PROJECT_DIR$/src/quilt_data/quilt_main.py" />
+        <option value="$PROJECT_DIR$/src/doit.py" />
+        <option value="$PROJECT_DIR$/src/quilt_data/data/mentions_header.csv" />
+        <option value="$PROJECT_DIR$/src/quilt_data/data/events_header.csv" />
+        <option value="$PROJECT_DIR$/src/quilt_data/data/gkg_header.csv" />
+        <option value="$PROJECT_DIR$/src/testcrawler.py" />
+        <option value="$PROJECT_DIR$/src/crawler.py" />
+        <option value="$PROJECT_DIR$/src/first_load.py" />
+        <option value="$PROJECT_DIR$/src/quilt_data/build.yml" />
+        <option value="$PROJECT_DIR$/src/upload_quilt_data.py" />
+        <option value="$PROJECT_DIR$/src/spark.py" />
+        <option value="$PROJECT_DIR$/src/gather_news.py" />
+        <option value="$PROJECT_DIR$/src/testquilt.py" />
+        <option value="$PROJECT_DIR$/src/calcs.py" />
+        <option value="$PROJECT_DIR$/src/download_source.py" />
+        <option value="$PROJECT_DIR$/src/gdelt.py" />
+        <option value="$PROJECT_DIR$/quilt/README.md" />
+        <option value="$PROJECT_DIR$/data-processing/download_source.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/WIP" />
+        <option value="$PROJECT_DIR$/airflow/gdelt_dag.py" />
+        <option value="$PROJECT_DIR$/gdelt-plus/Connection.py" />
+        <option value="$PROJECT_DIR$/data-processing/src/PostgreSQLConnector.py" />
+        <option value="$PROJECT_DIR$/data-processing/src/calcs.py" />
+        <option value="$PROJECT_DIR$/data-processing/srcgdelt/calcs.py" />
+        <option value="$PROJECT_DIR$/data-processing/srcgdelt/Queries.py" />
+        <option value="$PROJECT_DIR$/data-processing/gdelt.py" />
+        <option value="$PROJECT_DIR$/data-processing/tools.py" />
+        <option value="$PROJECT_DIR$/data-processing/calcs.py" />
+        <option value="$PROJECT_DIR$/data-processing/PostgreSQLConnector.py" />
+        <option value="$PROJECT_DIR$/config/config.py" />
+        <option value="$PROJECT_DIR$/config/database.ini" />
+        <option value="$PROJECT_DIR$/flask/config/database.ini" />
+        <option value="$PROJECT_DIR$/flask/config/configConn.py" />
+        <option value="$PROJECT_DIR$/flask/config/__init__.py" />
+        <option value="$PROJECT_DIR$/flask/PostgreSQLData.py" />
+        <option value="$PROJECT_DIR$/flask/hello.py" />
+        <option value="$PROJECT_DIR$/flask/postgres_data.py" />
+        <option value="$PROJECT_DIR$/flask/config/config_dbconn.py" />
+        <option value="$PROJECT_DIR$/flask/templates/index.html" />
+        <option value="$PROJECT_DIR$/flask/__init__.py" />
+        <option value="$PROJECT_DIR$/flask/flask_gdelt.py" />
+        <option value="$PROJECT_DIR$/flaskweb/__init__.py" />
+        <option value="$PROJECT_DIR$/flaskweb/routes/routes.py" />
+        <option value="$PROJECT_DIR$/flaskweb/config/config_dbconn.py" />
+        <option value="$PROJECT_DIR$/flaskweb/postgres_data.py" />
+        <option value="$PROJECT_DIR$/flaskweb/flask_gdelt.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/insight-gdelt.iml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/deployment.xml" />
+        <option value="$PROJECT_DIR$/.idea/webServers.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="-2" />
+    <option name="width" value="1920" />
+    <option name="height" value="1082" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="insight-gdelt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="insight-gdelt" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="insight-gdelt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="insight-gdelt" type="462c0819:PsiDirectoryNode" />
+              <item name="flaskweb" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/flask/config/database.ini" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="insight-gdelt" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="insight-gdelt" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/quilt_data/data" />
+      <recent name="$PROJECT_DIR$/src/quilt/data" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/flask" />
+      <recent name="$PROJECT_DIR$/data-processing" />
+      <recent name="$PROJECT_DIR$/data-processing/src" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.spark">
+    <configuration name="download_source (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="insight-gdelt" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/download_source.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="download_source" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="insight-gdelt" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/download_source.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="spark" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="insight-gdelt" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PYSPARK_PYTHON" value="/usr/bin/python3.6" />
+        <env name="PYSPARK_DRIVER_PYTHON" value="ipython3" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/gdelt.py" />
+      <option name="PARAMETERS" value="--jars /usr/local/spark/lib/aws-java-sdk-1.7.4.jar:/usr/local/spark/lib/hadoop-aws-2.7.1.jar:/usr/local/spark/lib/hadoop-client-2.6.0.jar" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.download_source (1)" />
+      <item itemvalue="Python.download_source" />
+      <item itemvalue="Python.spark" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.spark" />
+        <item itemvalue="Python.download_source (1)" />
+        <item itemvalue="Python.download_source" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="df28e42e-a00f-496a-88ec-8a77826db3ed" name="Default Changelist" comment="" />
+      <created>1560231564974</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1560231564974</updated>
+      <workItem from="1560312164037" duration="5707000" />
+      <workItem from="1560350362841" duration="16216000" />
+      <workItem from="1560378042042" duration="1044000" />
+      <workItem from="1560381024796" duration="7520000" />
+      <workItem from="1560394775240" duration="5088000" />
+      <workItem from="1560438605888" duration="20818000" />
+      <workItem from="1560538918696" duration="16696000" />
+      <workItem from="1560561947731" duration="1186000" />
+      <workItem from="1560564273712" duration="8721000" />
+      <workItem from="1560704117086" duration="18281000" />
+      <workItem from="1560786701019" duration="16429000" />
+      <workItem from="1560876385798" duration="17565000" />
+      <workItem from="1560960371791" duration="2158000" />
+      <workItem from="1560967293054" duration="21068000" />
+      <workItem from="1560996907558" duration="4313000" />
+      <workItem from="1561045616649" duration="16786000" />
+      <workItem from="1561129930696" duration="13950000" />
+      <workItem from="1561160112520" duration="31512000" />
+      <workItem from="1561304420229" duration="18450000" />
+      <workItem from="1561357562914" duration="25585000" />
+      <workItem from="1561437053443" duration="55000" />
+      <workItem from="1561437200101" duration="1238000" />
+      <workItem from="1561470311070" duration="170000" />
+      <workItem from="1561477519158" duration="11599000" />
+      <workItem from="1561507520830" duration="16952000" />
+    </task>
+    <task id="LOCAL-00001" summary="added tool for adding files to s3 on a regular basis from the live feed or from batch">
+      <created>1560270746757</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1560270746757</updated>
+    </task>
+    <task id="LOCAL-00002" summary="DAG for the 15min processing">
+      <created>1560566902392</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1560566902393</updated>
+    </task>
+    <task id="LOCAL-00003" summary="first version of the ETL. &#10;Has the schemas for the data, reads it from S3, scrape the news and upload it again to S3">
+      <created>1560566973417</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1560566973417</updated>
+    </task>
+    <task id="LOCAL-00004" summary="text file containing the links for download">
+      <created>1560567036658</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1560567036658</updated>
+    </task>
+    <task id="LOCAL-00005" summary="script to run every 15min to process new data">
+      <created>1560567077460</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560567077460</updated>
+    </task>
+    <task id="LOCAL-00006" summary="indentation fix">
+      <created>1560568101319</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1560568101319</updated>
+    </task>
+    <task id="LOCAL-00007" summary="updated path for data">
+      <created>1560719221141</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1560719221141</updated>
+    </task>
+    <task id="LOCAL-00008" summary="updated time interval">
+      <created>1560719249663</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1560719249663</updated>
+    </task>
+    <task id="LOCAL-00009" summary="build file for quilt data structure">
+      <created>1560823654741</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1560823654741</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added tool for adding files to s3 on a regular basis from the live feed or from batch">
+      <created>1560824252245</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1560824252245</updated>
+    </task>
+    <task id="LOCAL-00011" summary="build file for quilt data structure">
+      <created>1560824692568</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1560824692568</updated>
+    </task>
+    <task id="LOCAL-00012" summary="readme for quilt data">
+      <created>1560824747779</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1560824747779</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add simple test file">
+      <created>1560824868097</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1560824868098</updated>
+    </task>
+    <task id="LOCAL-00014" summary="added tool for adding files to s3 on a regular basis from the live feed or from batch">
+      <created>1560824893231</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1560824893231</updated>
+    </task>
+    <task id="LOCAL-00015" summary="simple test file for quilt">
+      <created>1560824938605</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1560824938605</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added functionality to add data to already existing quilt datasets">
+      <created>1560972252527</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1560972252527</updated>
+    </task>
+    <task id="LOCAL-00017" summary="changes to tests">
+      <created>1561145682602</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1561145682602</updated>
+    </task>
+    <task id="LOCAL-00018" summary="changed structure">
+      <created>1561145914821</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1561145914821</updated>
+    </task>
+    <task id="LOCAL-00019" summary="code refractoring and fixed the end to end process to work with quilt, newlines and quotes">
+      <created>1561272052545</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1561272052545</updated>
+    </task>
+    <task id="LOCAL-00020" summary="added header=True to the read function from S3">
+      <created>1561330488851</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1561330488852</updated>
+    </task>
+    <task id="LOCAL-00021" summary="added functionality to append the data to already existing quilt data">
+      <created>1561350305361</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1561350305361</updated>
+    </task>
+    <task id="LOCAL-00022" summary="added spark call and cleaned up code">
+      <created>1561434490824</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1561434490824</updated>
+    </task>
+    <task id="LOCAL-00023" summary="redone quilt readme">
+      <created>1561435606635</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1561435606635</updated>
+    </task>
+    <task id="LOCAL-00024" summary="reorganized structure">
+      <created>1561436094943</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1561436094943</updated>
+    </task>
+    <task id="LOCAL-00025" summary="added .gitignore">
+      <created>1561436564053</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1561436564053</updated>
+    </task>
+    <task id="LOCAL-00026" summary="added correct paths">
+      <created>1561438253433</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1561438253433</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fixed path to spark script">
+      <created>1561470465867</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1561470465867</updated>
+    </task>
+    <task id="LOCAL-00028" summary="created function to create spark session">
+      <created>1561527984893</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1561527984893</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added ignore for config details">
+      <created>1561528044390</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1561528044390</updated>
+    </task>
+    <task id="LOCAL-00030" summary="first commit for the webui">
+      <created>1561528075579</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1561528075579</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="299107000" />
+  </component>
+  <component name="TodoView" selected-index="4">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49839228" visible="true" weight="0.26508024" />
+      <window_info id="Structure" order="1" sideWeight="0.5016077" side_tool="true" weight="0.3043719" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4997233" weight="0.32937366" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5949087" weight="0.32937366" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4991699" weight="0.39956802" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32937366" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32721382" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49584946" weight="0.32829374" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50857776" side_tool="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.4980631" weight="0.3286638" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.49142224" weight="0.27213824" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Messages" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24958494" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.32982844" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="SciView" order="5" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49839228" visible="true" weight="0.26508024" />
+      <window_info id="Structure" order="1" sideWeight="0.5016077" side_tool="true" weight="0.3043719" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4997233" weight="0.32937366" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5949087" weight="0.32937366" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4991699" weight="0.39956802" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32937366" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3275862" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49584946" weight="0.32829374" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50857776" side_tool="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.4980631" weight="0.3286638" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.49142224" visible="true" weight="0.27213824" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Messages" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24958494" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.32982844" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="SciView" order="5" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="text file containing the links for download" />
+    <MESSAGE value="script to run every 15min to process new data" />
+    <MESSAGE value="indentation fix" />
+    <MESSAGE value="updated path for data" />
+    <MESSAGE value="updated time interval" />
+    <MESSAGE value="build file for quilt data structure" />
+    <MESSAGE value="readme for quilt data" />
+    <MESSAGE value="add simple test file" />
+    <MESSAGE value="added tool for adding files to s3 on a regular basis from the live feed or from batch" />
+    <MESSAGE value="simple test file for quilt" />
+    <MESSAGE value="added functionality to add data to already existing quilt datasets" />
+    <MESSAGE value="changes to tests" />
+    <MESSAGE value="changed structure" />
+    <MESSAGE value="code refractoring and fixed the end to end process to work with quilt, newlines and quotes" />
+    <MESSAGE value="added header=True to the read function from S3" />
+    <MESSAGE value="added functionality to append the data to already existing quilt data" />
+    <MESSAGE value="added spark call and cleaned up code" />
+    <MESSAGE value="redone quilt readme" />
+    <MESSAGE value="reorganized structure" />
+    <MESSAGE value="added .gitignore" />
+    <MESSAGE value="added correct paths" />
+    <MESSAGE value="fixed path to spark script" />
+    <MESSAGE value="created function to create spark session" />
+    <MESSAGE value="added ignore for config details" />
+    <MESSAGE value="first commit for the webui" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit for the webui" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="603" height="214" key="Git.Branch.Popup" />
+    <state width="603" height="214" key="Git.Branch.Popup/1920.1080" />
+    <state width="603" height="214" key="Git.Branch.Popup@1920.1080" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/insight_gdelt$spark.coverage" NAME="spark Coverage Results" MODIFIED="1560789881218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file:///usr/lib/python3.6/urllib/request.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="257" selection-start-line="257" selection-end-line="257" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/tools/data/empty.txt" />
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-840423654/-888183346/py4j/protocol.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="327" selection-start-line="327" selection-end-line="327" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/tools/links.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/quilt_data/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/quilt_data/build.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="23" lean-forward="true" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/20190608150000.gkg.csv" />
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/empty.txt" />
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/20190102001500.gkg.csv" />
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/20190102001500.export.CSV" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="195">
+            <caret line="13" column="59" selection-end-line="37" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/mentions_header.csv" />
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/link_events_to_news_header.csv" />
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/events_header.csv" />
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/data_with_news_header.csv" />
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/gkg_header.csv" />
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/20190102000000.export.CSV" />
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/20190102000000.mentions.CSV" />
+    <entry file="file://$PROJECT_DIR$/src/quilt_data/data/20190102000000.gkg.csv" />
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testcrawler.py" />
+    <entry file="file://$PROJECT_DIR$/src/doit.py" />
+    <entry file="file://$PROJECT_DIR$/src/crawler.py" />
+    <entry file="file://$PROJECT_DIR$/quilt/tests/test_quilt.py" />
+    <entry file="file://$PROJECT_DIR$/quilt/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="589">
+            <caret line="43" selection-start-line="43" selection-end-line="43" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quilt/build.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/first_load.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="32" selection-start-line="2" selection-end-line="6" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/testquilt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/upload_quilt_data.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/download_source.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" lean-forward="true" selection-end-line="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/airflow/gdelt_dag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="20" selection-start-column="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gdelt-plus/Connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WIP">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="23" lean-forward="true" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/Queries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/gdelt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#12281#12873#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/calcs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="235" column="17" selection-start-line="235" selection-start-column="17" selection-end-line="235" selection-end-column="17" />
+          <folding>
+            <element signature="e#23#8942#0" />
+            <element signature="e#9009#10083#0" />
+            <element signature="e#10137#10995#0" />
+            <element signature="e#11056#11819#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/PostgreSQLConnector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="93" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskweb/config/database.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskweb/routes/routes.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskweb/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskweb/postgres_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="47" selection-end-column="60" />
+          <folding>
+            <element signature="e#58#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskweb/config/config_dbconn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" lean-forward="true" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskweb/flask_gdelt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskweb/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskweb/config/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="10" selection-start-column="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
