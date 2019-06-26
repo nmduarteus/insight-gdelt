@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df28e42e-a00f-496a-88ec-8a77826db3ed" name="Default Changelist" comment="" />
+    <list default="true" id="df28e42e-a00f-496a-88ec-8a77826db3ed" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskweb/config/database.ini" beforeDir="false" />
+    </list>
     <ignored path="data-processing/src/" />
     <ignored path="flask/config/database.ini" />
     <manually-removed-from-ignored>
@@ -15,7 +18,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="20" selection-start-column="20" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -146,7 +159,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -163,9 +175,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
@@ -324,7 +338,8 @@
       <workItem from="1561437200101" duration="1238000" />
       <workItem from="1561470311070" duration="170000" />
       <workItem from="1561477519158" duration="11599000" />
-      <workItem from="1561507520830" duration="16952000" />
+      <workItem from="1561507520830" duration="17184000" />
+      <workItem from="1561528635985" duration="20000" />
     </task>
     <task id="LOCAL-00001" summary="added tool for adding files to s3 on a regular basis from the live feed or from batch">
       <created>1560270746757</created>
@@ -540,7 +555,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="299107000" />
+    <option name="totallyTimeSpent" value="299359000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -554,7 +569,7 @@
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49839228" visible="true" weight="0.26508024" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49839228" visible="true" weight="0.26840067" />
       <window_info id="Structure" order="1" sideWeight="0.5016077" side_tool="true" weight="0.3043719" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -702,9 +717,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/tools/links.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/tools/links.txt" />
     <entry file="file://$USER_HOME$/Desktop/quilt_data/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -742,9 +755,7 @@
     <entry file="file://$PROJECT_DIR$/src/quilt_data/data/20190102000000.export.CSV" />
     <entry file="file://$PROJECT_DIR$/src/quilt_data/data/20190102000000.mentions.CSV" />
     <entry file="file://$PROJECT_DIR$/src/quilt_data/data/20190102000000.gkg.csv" />
-    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/__init__.py" />
     <entry file="file://$PROJECT_DIR$/src/testcrawler.py" />
     <entry file="file://$PROJECT_DIR$/src/doit.py" />
     <entry file="file://$PROJECT_DIR$/src/crawler.py" />
@@ -766,23 +777,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/first_load.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="32" selection-start-line="2" selection-end-line="6" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/testquilt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/upload_quilt_data.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/first_load.py" />
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/testquilt.py" />
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/upload_quilt_data.py" />
     <entry file="file://$PROJECT_DIR$/data-processing/download_source.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -797,26 +794,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" selection-start-column="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data-processing/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/gdelt-plus/Connection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/gdelt-plus/Connection.py" />
     <entry file="file://$PROJECT_DIR$/WIP">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -824,13 +805,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/Queries.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data-processing/srcgdelt/Queries.py" />
     <entry file="file://$PROJECT_DIR$/data-processing/gdelt.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -879,12 +854,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flaskweb/routes/routes.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flaskweb/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskweb/routes/routes.py" />
+    <entry file="file://$PROJECT_DIR$/flaskweb/__init__.py" />
     <entry file="file://$PROJECT_DIR$/flaskweb/postgres_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -920,6 +891,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="10" selection-start-column="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="20" selection-start-column="20" selection-end-column="20" />
         </state>
       </provider>
     </entry>
