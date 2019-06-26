@@ -20,7 +20,7 @@ def config(section, filename=os.path.dirname(__file__)+'/database.ini'):
     # create a parser
     parser = ConfigParser()
     # read config file
-    parser.read(filename)
+    parser.read(os.path.expanduser(filename))
 
     # get section, default to gdelt
     db = {}

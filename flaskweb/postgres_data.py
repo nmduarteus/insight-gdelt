@@ -18,7 +18,7 @@ class PostgresqlObj:
 
     def connect(self):
         try:
-            params = config_dbconn.config("gdelt")
+            params = config_dbconn.config("gdelt", "~/insight/database.ini")
             self.conn = psycopg2.connect(**params)
 
         except (Exception, psycopg2.DatabaseError) as error:
