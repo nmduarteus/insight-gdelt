@@ -2,12 +2,11 @@ import argparse
 import sys
 
 import quilt
+import tools
 from newsplease import NewsPlease
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf
 from pyspark.sql.types import StringType
-
-import tools
 
 master = "spark://ec2-34-219-229-126.us-west-2.compute.amazonaws.com:7077"
 spark_input_file = "/home/ubuntu/insight/spark.txt"
@@ -38,7 +37,7 @@ def get_news(link):
 def upload_to_quilt(spark):
     # downloads the data from s3
     print("Getting schemas..")
-    events_schema, mentions_schema, news_schema, events_schema2 = tools.set_schemas()
+    events_schema, mentions_schema, news_schema, events_schema2, gkg_schema = tools.set_schemas()
 
     # remove old data and get new one
     quilt.rm("nmduarte/gdelt", force=True)
@@ -87,7 +86,10 @@ def do_crawling(spark):
     """
 
     print("Getting schemas..")
-    events_schema, mentions_schema, news_schema, events_schema2 = tools.set_schemas()
+    events_schema, mentions_schema, news_schema, events_schema2, gkg_schema = tools.set_schemas()
+
+    gkg_df = tools.read_from_s3(spark, "gkg", gkg_schema, cmd_opts.date)
+    print(gkg_df.show())
 
     # mentions data
     print("Getting mention data..")
