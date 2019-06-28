@@ -1,27 +1,260 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <title>{{ title }}</title>
+      <style>
+         .bd-placeholder-img {
+         font-size: 1.125rem;
+         text-anchor: middle;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         user-select: none;
+         }
+         @media (min-width: 768px) {
+         .bd-placeholder-img-lg {
+         font-size: 3.5rem;
+         }
+         }
+      </style>
+      <!-- Custom styles for this template -->
+      <link href="{{ url_for('static', filename='css/cover.css') }}" rel="stylesheet">
+   </head>
+   <body class="text-center">
+      <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+         <header class="masthead mb-auto">
+            <div class="inner">
+               <h3 class="masthead-brand">GDELT +</h3>
+               <nav class="nav nav-masthead justify-content-center">
+                  <a class="nav-link active" href="#">Global Analysis</a>
+                  <a class="nav-link" href="#">Events Analysis</a>
+                  <a class="nav-link" href="#">Others</a>
+               </nav>
+            </div>
+         </header>
+         <div class="container">
+            <div class="row">
+               <div class="col-sm">
+                  <main role="main" class="inner cover">
+                     <h1 class="cover-heading">Sentiment of the news</h1>
+                     <div id="chartdiv" style="width: 100%; height: 500px"></div>
+                  </main>
+               </div>
+               <div class="col-sm">
+                  <main role="main" class="inner cover">
+                     <h1 class="cover-heading">Countries in the news</h1>
+                     <div id="chartdiv1" style="width: 100%; height: 500px"></div>
+                  </main>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm">
+                  <main role="main" class="inner cover">
+                     <h1 class="cover-heading">Biggest sources</h1>
+                     <div id="chartdiv3" style="width: 100%; height: 500px"></div>
+                  </main>
+               </div>
+               <div class="col-sm">
+                  <main role="main" class="inner cover">
+                     <h1 class="cover-heading">Most used words</h1>
+                     <div id="chartdiv5" style="width: 100%; height: 500px"></div>
+                  </main>
+               </div>
+            </div>
+         </div>
+         <footer class="mastfoot mt-auto">
+            <div class="inner">
+               <p>GDELT+ Created by DE Fellow Nuno Tavares</p>
+            </div>
+         </footer>
+      </div>
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.9.0/d3.min.js"></script>
+      <script src="//www.amcharts.com/lib/4/core.js"></script>
+      <script src="//www.amcharts.com/lib/4/charts.js"></script>
+      <script src="https://www.amcharts.com/lib/4/plugins/wordCloud.js"></script>
+      <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
+      <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script>
+         // Create chart instance
+         var chart = am4core.create("chartdiv", am4charts.PieChart);
 
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-    <p>, {{ data.categories }}!</p>
-    <p>, {{ data.subcategories }}!</p>
+         // Add data
+         chart.data = {{ data.countries|safe }}
+
+         // Add and configure Series
+         var pieSeries = chart.series.push(new am4charts.PieSeries());
+         pieSeries.dataFields.value = "total";
+         pieSeries.dataFields.category = "country_code";
+         pieSeries.labels.template.disabled = true;
+         pieSeries.ticks.template.disabled = true;
+
+         chart.legend = new am4charts.Legend();
+         chart.legend.position = "right";
+         chart.legend.itemContainers.template.togglable = false;
+         chart.legend.itemContainers.template.events.on("hit", function(ev) {
+         var slice = ev.target.dataItem.dataContext.slice;
+         slice.isActive = !slice.isActive;
+         });
+
+         // Create chart instance
+         var chart = am4core.create("chartdiv1", am4charts.PieChart);
+
+         // Add data
+         chart.data = {{data.countries|safe}}
+
+         // Add and configure Series
+         var pieSeries = chart.series.push(new am4charts.PieSeries());
+         pieSeries.dataFields.value = "total";
+         pieSeries.dataFields.category = "country_code";
+         pieSeries.labels.template.disabled = true;
+         pieSeries.ticks.template.disabled = true;
+
+         chart.legend = new am4charts.Legend();
+         chart.legend.position = "right";
+         chart.legend.itemContainers.template.togglable = false;
+         chart.legend.itemContainers.template.events.on("hit", function(ev) {
+         var slice = ev.target.dataItem.dataContext.slice;
+         slice.isActive = !slice.isActive;
+         });
+
+         am4core.ready(function() {
+
+         // Themes begin
+         am4core.useTheme(am4themes_animated);
+         // Themes end
+
+         // Create chart instance
+         var chart = am4core.create("chartdiv", am4charts.XYChart3D);
+
+         // Add data
+         chart.data = {{data.tone_per_month|safe}}
+
+         // Create axes
+         let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+         categoryAxis.dataFields.category = "year_month";
+         categoryAxis.renderer.labels.template.rotation = 270;
+         categoryAxis.renderer.labels.template.hideOversized = false;
+         categoryAxis.renderer.minGridDistance = 1;
+         categoryAxis.renderer.labels.template.horizontalCenter = "right";
+         categoryAxis.renderer.labels.template.verticalCenter = "middle";
+         categoryAxis.tooltip.label.rotation = 270;
+         categoryAxis.tooltip.label.horizontalCenter = "right";
+         categoryAxis.tooltip.label.verticalCenter = "middle";
+
+         let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+         valueAxis.title.text = "Tone";
+         valueAxis.title.fontWeight = "bold";
+
+         // Create series
+         var series = chart.series.push(new am4charts.ColumnSeries3D());
+         series.dataFields.valueY = "tone";
+         series.dataFields.categoryX = "year_month";
+         series.name = "YearMonth";
+         series.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+         series.columns.template.fillOpacity = .8;
+
+         var columnTemplate = series.columns.template;
+         columnTemplate.strokeWidth = 2;
+         columnTemplate.strokeOpacity = 1;
+         columnTemplate.stroke = am4core.color("#FFFFFF");
+
+         columnTemplate.adapter.add("fill", (fill, target) => {
+         return chart.colors.getIndex(target.dataItem.index);
+         })
+
+         columnTemplate.adapter.add("stroke", (stroke, target) => {
+         return chart.colors.getIndex(target.dataItem.index);
+         })
+
+         chart.cursor = new am4charts.XYCursor();
+         chart.cursor.lineX.strokeOpacity = 0;
+         chart.cursor.lineY.strokeOpacity = 0;
 
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.9.0/d3.min.js"></script>
-  </body>
+         // GRAPH 3
+         am4core.useTheme(am4themes_material);
+         am4core.useTheme(am4themes_animated);
+
+         var iconPath = "M171,336H70c-5.523,0-10,4.477-10,10s4.477,10,10,10h101c5.523,0,10-4.477,10-10S176.523,336,171,336z\n" +
+         "\t\tM322,336H221c-5.523,0-10,4.477-10,10s4.477,10,10,10h101c5.522,0,10-4.477,10-10S327.522,336,322,336z\n" +
+         "\tM322,86H70c-5.523,0-10,4.477-10,10s4.477,10,10,10h252c5.522,0,10-4.477,10-10S327.522,86,322,86z\n" +
+         "\tM322,136H221c-5.523,0-10,4.477-10,10s4.477,10,10,10h101c5.522,0,10-4.477,10-10S327.522,136,322,136z\n" +
+         "\tM322,186H221c-5.523,0-10,4.477-10,10s4.477,10,10,10h101c5.522,0,10-4.477,10-10S327.522,186,322,186z\n" +
+         "\tM322,236H221c-5.523,0-10,4.477-10,10s4.477,10,10,10h101c5.522,0,10-4.477,10-10S327.522,236,322,236z\n" +
+         "\tM322,286H221c-5.523,0-10,4.477-10,10s4.477,10,10,10h101c5.522,0,10-4.477,10-10S327.522,286,322,286z\n" +
+         "\tM171,286H70c-5.523,0-10,4.477-10,10s4.477,10,10,10h101c5.523,0,10-4.477,10-10S176.523,286,171,286z\n" +
+         "\tM171,136H70c-5.523,0-10,4.477-10,10v101c0,5.523,4.477,10,10,10h101c5.523,0,10-4.477,10-10V146\n" +
+         "\t\tC181,140.477,176.523,136,171,136z M161,237H80v-81h81V237z\n" +
+         "\tM422,76h-30V46c0-11.028-8.972-20-20-20H20C8.972,26,0,34.972,0,46v320c0,27.57,22.43,50,50,50h342c27.57,0,50-22.43,50-50\n" +
+         "\t\tV96C442,84.972,433.028,76,422,76z M422,366c0,16.542-13.458,30-30,30H50c-16.542,0-30-13.458-30-30V46h352v305\n" +
+         "\t\tc0,13.785,11.215,25,25,25c5.522,0,10-4.477,10-10s-4.478-10-10-10c-2.757,0-5-2.243-5-5V96h30V366z"
+
+         var chart3 = am4core.create("chartdiv3", am4charts.SlicedChart);
+         chart3.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+         chart3.paddingLeft = 150;
+
+         chart3.data = {{data.top_channels|safe}}
+
+         var series3 = chart3.series.push(new am4charts.PictorialStackedSeries());
+         series3.dataFields.value = "total";
+         series3.dataFields.category = "mention_source_name";
+         series3.alignLabels = true;
+         // this makes only A label to be visible
+         series3.labels.template.propertyFields.disabled = "disabled";
+         series3.ticks.template.propertyFields.disabled = "disabled";
+
+
+         series3.maskSprite.path = iconPath;
+         series3.ticks.template.locationX = 1;
+         series3.ticks.template.locationY = 0;
+
+         series3.labelsContainer.width = 100;
+
+         chart3.legend = new am4charts.Legend();
+         chart3.legend.position = "top";
+         chart3.legend.paddingRight = 160;
+         chart3.legend.paddingBottom = 40;
+         let marker3 = chart3.legend.markers.template.children.getIndex(0);
+         chart3.legend.markers.template.width = 40;
+         chart3.legend.markers.template.height = 40;
+         marker3.cornerRadius(20,20,20,20);
+
+         //CHART 4
+
+         am4core.useTheme(am4themes_material);
+         am4core.useTheme(am4themes_animated);
+         // Themes end
+
+
+         var chart4 = am4core.create("chartdiv5", am4plugins_wordCloud.WordCloud);
+         var series4 = chart4.series.push(new am4plugins_wordCloud.WordCloudSeries());
+
+        series4.accuracy = 4;
+        series4.step = 15;
+        series4.rotationThreshold = 0.7;
+        series4.maxCount = 200;
+        series4.minWordLength = 2;
+        series4.labels.template.tooltipText = "{word}: {value}";
+        series4.fontFamily = "Courier New";
+        series4.maxFontSize = am4core.percent(30);
+
+        series4.data={{data.top_words|safe}}
+        series4.dataFields.word = "word";
+        series4.dataFields.value = "count";
+
+         }); // end am4core.ready()
+      </script>
+   </body>
 </html>
