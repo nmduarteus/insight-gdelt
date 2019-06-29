@@ -4,7 +4,6 @@ import sys
 import quilt
 import tools
 from newsplease import NewsPlease
-from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf
 from pyspark.sql.types import StringType
 
@@ -139,25 +138,6 @@ def do_crawling(spark):
     tools.upload_to_s3(mentions_df, "mentions", cmd_opts.date)
 
 
-def spark_session():
-    """
-    Creates new spark session
-    :return: spark session
-    """
-    spark = SparkSession.builder.appName("GDELT+").master(master).getOrCreate()  # create new spark session
-    spark.conf.set("spark.hadoop.fs.s3a.multiobjectdelete.enable", "false")
-    spark.conf.set("spark.hadoop.fs.s3a.fast.upload", "true")
-    spark.conf.set("spark.sql.parquet.filterPushdown", "true")
-    spark.conf.set("spark.sql.parquet.mergeSchema", "false")
-    spark.conf.set("spark.hadoop.mapreduce.fileoutputcommitter.algorithm.version", "2")
-    spark.conf.set("spark.speculation", "false")
-    spark.conf.set("spark.sql.execution.arrow.enabled", "true")
-    spark.conf.set("spark.deploy.speadOut", "false")
-    spark.conf.set("mapreduce.fileoutputcommitter.marksuccessfuljobs", "false")
-
-    return spark
-
-
 def main():
     """
     Main function
@@ -174,7 +154,7 @@ def main():
     print(cmd_opts.date)
 
     # define session configurations and master
-    spark = spark_session()
+    spark = tools.spark_session()
 
     """
     spark.conf.set("spark.dynamicAllocation.enabled", "true")

@@ -1,8 +1,32 @@
+import logging
+import os
+import sys
+
+from pyspark.sql import SparkSession
 from pyspark.sql.types import FloatType, StringType, StructField, StructType, IntegerType
 
-bucket = "nmduartegdelt"
-prefix = "data"
-prefixUpload = "upload"
+sys.path.append(os.path.expanduser('~/insight/code/config/'))
+import config
+
+params = config.config("gdelt_app")
+
+def spark_session():
+    """
+    Creates new spark session
+    :return: spark session
+    """
+    spark = SparkSession.builder.appName("GDELT+").master(params['master']).getOrCreate()  # create new spark session
+    spark.conf.set("spark.hadoop.fs.s3a.multiobjectdelete.enable", "false")
+    spark.conf.set("spark.hadoop.fs.s3a.fast.upload", "true")
+    spark.conf.set("spark.sql.parquet.filterPushdown", "true")
+    spark.conf.set("spark.sql.parquet.mergeSchema", "false")
+    spark.conf.set("spark.hadoop.mapreduce.fileoutputcommitter.algorithm.version", "2")
+    spark.conf.set("spark.speculation", "false")
+    spark.conf.set("spark.sql.execution.arrow.enabled", "true")
+    spark.conf.set("spark.deploy.speadOut", "false")
+    spark.conf.set("mapreduce.fileoutputcommitter.marksuccessfuljobs", "false")
+
+    return spark
 
 def read_from_s3_enriched(session, location, schema, date):
     """
@@ -21,9 +45,9 @@ def read_from_s3_enriched(session, location, schema, date):
     minute = date[10:12]
 
     # creates the path for the output files
-    loc = "s3a://{}/{}/{}/{}/{}/{}/{}/{}".format(bucket, prefixUpload, year, month, day, hour, minute, location)
+    loc = "s3a://{}/{}/{}/{}/{}/{}/{}/{}".format(params['bucket'], params['prefix_upload'], year, month, day, hour, minute, location)
 
-    print("Reading enriched from path: ", loc)
+    logging.info("Reading enriched from path: ", loc)
 
     df = session.read.load(loc,
                            # reads all the files in the directory
@@ -58,9 +82,9 @@ def read_from_s3(session, name, schema, date):
     else:
         csv_name = "CSV"
 
-    s3filename = "s3a://{}/{}/{}.{}.{}".format(bucket, prefix, date, name, csv_name)
+    s3filename = "s3a://{}/{}/{}.{}.{}".format(params['bucket'], params['prefix'], date, name, csv_name)
 
-    print("Reading original S3 from path: ", s3filename)
+    logging.info("Reading original S3 from path: ", s3filename)
 
     df = session.read.load(s3filename,
                            # reads all the files in the directory
@@ -89,7 +113,7 @@ def upload_to_s3(data_to_write, location, date=None):
     minute = date[10:12]
 
     # creates the path for the output files
-    loc = "s3a://{}/{}/{}/{}/{}/{}/{}/{}".format(bucket, prefixUpload, year, month, day, hour, minute, location)
+    loc = "s3a://{}/{}/{}/{}/{}/{}/{}/{}".format(params['bucket'], params['prefixUpload'], year, month, day, hour, minute, location)
 
     # dataToWrite.write.mode("overwrite").parquet(loc)
 
