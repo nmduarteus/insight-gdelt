@@ -8,7 +8,7 @@ import os
 from configparser import ConfigParser
 
 
-def config(section, filename=os.path.dirname(__file__)+'/database.ini'):
+def config(section, filename=os.path.dirname(__file__) + '/config.ini'):
     """
     Function to read config file and parse it
     :param section: section of the config file to be read
@@ -22,13 +22,12 @@ def config(section, filename=os.path.dirname(__file__)+'/database.ini'):
     # read config file
     parser.read(os.path.expanduser(filename))
 
-    # get section, default to gdelt
-    db = {}
+    cfg = {}
     if parser.has_section(section):
         params = parser.items(section)
         for param in params:
-            db[param[0]] = param[1]
+            cfg[param[0]] = param[1]
     else:
         raise Exception('Section {0} not found in the {1} file'.format(section, filename))
 
-    return db
+    return cfg
