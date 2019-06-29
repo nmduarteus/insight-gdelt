@@ -113,7 +113,7 @@ def upload_to_s3(data_to_write, location, date=None):
     minute = date[10:12]
 
     # creates the path for the output files
-    loc = "s3a://{}/{}/{}/{}/{}/{}/{}/{}".format(params['bucket'], params['prefixUpload'], year, month, day, hour, minute, location)
+    loc = "s3a://{}/{}/{}/{}/{}/{}/{}/{}".format(params['bucket'], params['prefix_upload'], year, month, day, hour, minute, location)
 
     # dataToWrite.write.mode("overwrite").parquet(loc)
 
