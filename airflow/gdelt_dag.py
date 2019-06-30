@@ -16,7 +16,7 @@ SCRIPTS_FOLDER = HOME + '/scripts'
 DATA_FOLDER = HOME + '/data'
 
 # spark master script location
-SPARK_CODE = HOME + '/code/data-processing/gdelt.py'
+SPARK_CODE = HOME + '/code/data_processing/gdelt.py'
 
 default_args = {
     'owner': 'airflow',
