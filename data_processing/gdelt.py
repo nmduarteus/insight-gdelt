@@ -88,7 +88,6 @@ def do_crawling(spark):
     events_schema, mentions_schema, news_schema, events_schema2, gkg_schema = tools.set_schemas()
 
     gkg_df = tools.read_from_s3(spark, "gkg", gkg_schema, cmd_opts.date)
-    print(gkg_df.show())
 
     # mentions data
     print("Getting mention data..")
@@ -124,10 +123,6 @@ def do_crawling(spark):
 
     # gets the scrapped data and add it to the dataset
     distinct_news_with_data = distinct_news.withColumn("NewsText", news_udf(distinct_news.SOURCEURL))
-
-    pan = distinct_news_with_data.toPandas()
-    print(pan.head())
-
     print("Partitions: ", distinct_news_with_data.rdd.getNumPartitions())
 
     print("Loading to S3....")
