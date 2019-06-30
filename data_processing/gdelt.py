@@ -19,7 +19,6 @@ def clean_words(news):
     :return: Dataframe containing the list of words in the text and the total number of times they occur
     """
 
-
     # just alphanumeric
     news_clean = news.where(news["NewsText"].isNotNull()).withColumn('NewsTextClean',
                                                                      f.regexp_replace('NewsText', "[^0-9a-zA-Z ]",
