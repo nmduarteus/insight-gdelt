@@ -10,6 +10,7 @@ import config
 
 params = config.config("gdelt_app")
 
+
 def spark_session():
     """
     Creates new spark session
@@ -312,7 +313,8 @@ def set_schemas():
         StructField('V2EXTRASXML', StringType(), True)
     ])
 
-    return events_schema, mentions_schema, news_schema, events_schema2, gkg_schema
+    schemas_dic = {'events': events_schema, 'mentions': mentions_schema, 'news': news_schema, 'events2': events_schema2, 'gkg': gkg_schema}
+    return schemas_dic
 
 def set_upload_schemas():
     news_schema = StructType([
