@@ -47,6 +47,11 @@ GDELT is a very powerful dataset that is described as:
 
 - No S3, No Parquet for public registry
     - Build dataframes and append them on the fly to Quilt
-    - Used CSV instead of Parquet (but to be changed)    
+    - Used CSV instead of Parquet (but to be changed)
+    
+# Slides & Demo
+- Project slides can be found [here](http://bit.ly/gdeltplus)
+- Dashboard can be found [here](http://datadigest.club)
+- Jupyter Notebook can be found [here](http://www.datadigest.club:8888/notebooks/jup/GDELT%2B.ipynb)    
     
    
