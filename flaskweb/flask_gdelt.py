@@ -12,10 +12,10 @@ def webui():
 
     cameo_categories = db_data.execQuery(queries.get_all_categories)
     cameo_subcategories = db_data.execQuery(queries.get_all_subcategories)
-    countries = db_data.execQuery(queries.get_countries_with_most_events).toJson()
-    tone_per_month = db_data.execQuery(queries.avg_tone_per_month)
+    countries = db_data.execQuery(queries.get_countries_with_most_events)
     top_channels = db_data.execQuery(queries.top_channels)
     top_words = db_data.execQuery(queries.top_words)
+    tone_per_month = db_data.execQuery(queries.avg_tone_per_month)
     db_data.close()
 
     # data to be passed to front end

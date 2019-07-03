@@ -1,6 +1,6 @@
-get_all_categories = """select * from cameo_categories order by 1"""
+get_all_categories = """select code, description from cameo_categories order by 1"""
 
-get_all_subcategories = """select * from cameo_subcategories order by 1"""
+get_all_subcategories = """select code, description, category from cameo_subcategories order by 1"""
 
 get_countries_with_most_events = """select country_code, total from top_events order by total desc limit 10"""
 
@@ -20,6 +20,6 @@ group by
 cameo_categories.description,
 year_month"""
 
-top_channels = """select * from top_channels limit 3"""
+top_channels = """select top_channels.mention_source_name, top_channels.total from top_channels limit 3"""
 
-top_words = """select * from news_to_show order by count desc limit 200"""
+top_words = """select news_to_show.word, news_to_show.count from news_to_show order by count desc limit 200"""
