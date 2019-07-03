@@ -25,3 +25,7 @@ class SparkPostgreConn:
 
     def write(self, df, table, md):
         df.write.option("truncate","true").jdbc(url=self.url_conn,table= table,mode=md,properties=self.props)
+
+
+    def write_with_partitions(self, df, table, md, column_partition, num_partitions, min_bound, max_bound):
+        df.write.option("lowerBound",min_bound).option("upperBound",max_bound).option("partitionColumn", column_partition).option("numPartitions", num_partitions).option("truncate","true").jdbc(url=self.url_conn,table= table,mode=md,properties=self.props)

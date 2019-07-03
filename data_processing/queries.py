@@ -3,11 +3,13 @@ mostmentions_query = """select
 	count(mentions.GLOBALEVENTID) as total,
 	events.MonthYear as year_month,
 	events.AvgTone as avg_tone,
-	events.EventCode as event_code
+	events.EventCode as event_code,
+	events.year_month_int as year_month_int
 from events
 left join mentions on events.GLOBALEVENTID=mentions.GLOBALEVENTID
 group by
 	events.GLOBALEVENTID,
+	events.year_month_int,
 	events.MonthYear,
 	events.AvgTone,
 	events.EventCode

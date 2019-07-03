@@ -10,7 +10,7 @@ import tools
 from config_spark_dbconn import SparkPostgreConn
 from newsplease import NewsPlease
 from pyspark.ml.feature import StopWordsRemover
-from pyspark.sql.types import StringType
+from pyspark.sql.types import StringType, IntegerType
 
 
 def clean_words(news):
@@ -51,14 +51,18 @@ def upload_stats(spark, schemas_dic):
     # PostgreSQL connection and writer
     postgresql_conn = SparkPostgreConn()
 
+    # creates a UDF so we can add the data as a new column to the already existing dataframe
+    events_dt_udf = f.udf(lambda z: int(z), IntegerType())
+
     logging.info("Reading data from S3...")
     events = tools.read_from_s3(spark, "export", schemas_dic['events'], "all")
+    events_with_date = events.withColumn("year_month_int", events_dt_udf(events['MonthYear']))
     mentions = tools.read_from_s3(spark, "mentions", schemas_dic['mentions'], "all")
     news = tools.read_from_s3_enriched(spark, "news", schemas_dic['news'], cmd_opts.date)
 
     print("after read")
     # registering temp tables for querying
-    events.registerTempTable("events")
+    events_with_date.registerTempTable("events")
     mentions.registerTempTable("mentions")
     news.registerTempTable("news")
     news_to_show = clean_words(news)
@@ -73,10 +77,13 @@ def upload_stats(spark, schemas_dic):
     print("uploading")
     # write data to PostgreSQL
     logging.info("Saving data to webui...")
-    postgresql_conn.write(df=most_mentions, table="top_mentions", md="overwrite")
+    most_mentions.printSchema()
     postgresql_conn.write(df=events_data, table="top_events", md="overwrite")
     postgresql_conn.write(df=top_channels, table="top_channels", md="overwrite")
     postgresql_conn.write(df=news_to_show, table="news_to_show", md="overwrite")
+    postgresql_conn.write(df=most_mentions, table="top_mentions", md="overwrite")
+    #postgresql_conn.write_with_partitions(df=most_mentions, table="top_mentions", md="overwrite",
+    #                                      column_partition="year_month_int", num_partitions=20, min_bound=200801, max_bound=202001)
 
 
 def get_news(link):
@@ -171,6 +178,7 @@ def do_crawling(spark, schemas_dic):
     # creates a UDF so we can add the data as a new column to the already existing dataframe
     news_udf = f.udf(lambda z: get_news(z),
                      StringType())
+
 
     # creates a UDF for the hash value
     hash_udf = f.udf(lambda z: hash(z), StringType())
