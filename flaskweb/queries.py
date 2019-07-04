@@ -6,7 +6,7 @@ get_countries_with_most_events = """select country_code, total from top_events o
 
 most_mentions_per_month = """select val, total, year_month from results where query_name='top_mentions' order by total desc limit 10"""
 
-avg_tone_per_month = """select year_month::text, avg("avg_tone") as tone from top_mentions group by year_month"""
+avg_tone_per_month = """select year_month, tone from avg_tone_view """
 
 types_across_time = """select 
 cameo_categories.description,
@@ -22,4 +22,4 @@ year_month"""
 
 top_channels = """select top_channels.mention_source_name, top_channels.total from top_channels limit 3"""
 
-top_words = """select news_to_show.word, news_to_show.count from news_to_show order by count desc limit 200"""
+top_words = """select news_to_show.word, news_to_show.count from news_to_show_view"""
