@@ -14,11 +14,13 @@ class SparkPostgreConn:
 
         self.db_name = db['database']
         self.host = db['host']
+        self.username = db['user']
+        self.passw = db['password']
 
-        self.url_conn = "jdbc:postgresql://{host}:5432/{db}".format(host='10.0.0.13', db='gdelt')
+        self.url_conn = "jdbc:postgresql://{host}:5432/{db}".format(host=self.host, db='gdelt')
 
-        self.props = {"user":db['user'],
-                      "password" : db['password'],
+        self.props = {"user": self.username,
+                      "password": self.passw,
                       "driver": "org.postgresql.Driver"
                      }
 
