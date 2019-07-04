@@ -8,6 +8,7 @@ import queries
 import quilt
 import tools
 from config_spark_dbconn import SparkPostgreConn
+from execute_view_refreshes import ExecuteViewRefreshes
 from newsplease import NewsPlease
 from pyspark.ml.feature import StopWordsRemover
 from pyspark.sql.types import StringType, IntegerType
@@ -60,28 +61,29 @@ def upload_stats(spark, schemas_dic):
     mentions = tools.read_from_s3(spark, "mentions", schemas_dic['mentions'], "all")
     news = tools.read_from_s3_enriched(spark, "news", schemas_dic['news'], cmd_opts.date)
 
-    print("after read")
     # registering temp tables for querying
     events_with_date.registerTempTable("events")
     mentions.registerTempTable("mentions")
     news.registerTempTable("news")
     news_to_show = clean_words(news)
 
-    print("queries")
     # get data
     logging.info("Doing queries for webui...")
     events_data = spark.sql(queries.events_query)
     most_mentions = spark.sql(queries.mostmentions_query)
     top_channels = spark.sql(queries.top_channels_query)
 
-    print("uploading")
     # write data to PostgreSQL
     logging.info("Saving data to webui...")
-    most_mentions.printSchema()
     postgresql_conn.write(df=events_data, table="top_events", md="overwrite")
     postgresql_conn.write(df=top_channels, table="top_channels", md="overwrite")
     postgresql_conn.write(df=news_to_show, table="news_to_show", md="overwrite")
-    postgresql_conn.write(df=most_mentions, table="top_mentions", md="overwrite")
+
+    #refreshes materialized views for UI
+    refresh_conn = ExecuteViewRefreshes()
+    refresh_conn.execRefresh()
+    refresh_conn.close()
+    #postgresql_conn.write(df=most_mentions, table="top_mentions", md="overwrite")
     #postgresql_conn.write_with_partitions(df=most_mentions, table="top_mentions", md="overwrite",
     #                                      column_partition="year_month_int", num_partitions=20, min_bound=200801, max_bound=202001)
 
@@ -248,11 +250,8 @@ def main():
         upload_stats(spark, schemas_dic)
     elif cmd_opts.action is None:
         logging.debug("Option Selected: End to End")
-        print("Doing crawling")
         do_crawling(spark, schemas_dic)
-        print("Uploading to quilt")
         upload_to_quilt(spark, schemas_dic)
-        print("Uploading to postresql")
         upload_stats(spark, schemas_dic)
 
     spark.stop()
