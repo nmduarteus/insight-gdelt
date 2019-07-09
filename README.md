@@ -26,7 +26,7 @@ GDELT is a very powerful dataset that is described as:
 
 # Pipeline & Tech Stack
 
-![flow](https://drive.google.com/uc?export=view&id=1UnUkaHOI_4hQ6UOorLhtGFuc-IgV14XA)
+![flow](https://drive.google.com/uc?export=view&id=1_3TVBhe78vlsoAEYWXv8tLum2X4qZEJH)
 
 # Challenges
 **Queries' Performance:**
@@ -42,16 +42,10 @@ GDELT is a very powerful dataset that is described as:
     - Find and tweak good news' scrapers
     - Make usage of auto scaling groups
     - Improve write process to PostgreSLQ
-    
-**Free Quilt Limitations:**
-
-- No S3, No Parquet for public registry
-    - Build dataframes and append them on the fly to Quilt
-    - Used CSV instead of Parquet (but to be changed)
-    
+        
 # Slides & Demo
 - Project slides can be found [here](http://bit.ly/gdeltplus)
 - Dashboard can be found [here](http://datadigest.club)
-- Jupyter Notebook can be found [here](http://www.datadigest.club:8888/notebooks/jup/GDELT%2B.ipynb)    
+- Jupyter Notebook can be found (password is insight) [here](http://www.datadigest.club:8888/notebooks/jup/GDELT%2B.ipynb)    
     
    
