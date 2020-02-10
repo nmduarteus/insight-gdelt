@@ -26,7 +26,7 @@ GDELT is a very powerful dataset that is described as:
 
 # Pipeline & Tech Stack
 
-![flow](https://drive.google.com/uc?export=view&id=1_3TVBhe78vlsoAEYWXv8tLum2X4qZEJH)
+![flow](https://drive.google.com/uc?export=view&id=1UnUkaHOI_4hQ6UOorLhtGFuc-IgV14XA)
 
 # Challenges
 **Queries' Performance:**
